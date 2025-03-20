@@ -1,1 +1,2 @@
-output/
+# Ignorar todas las carpetas output en cualquier nivel
+**/output/
