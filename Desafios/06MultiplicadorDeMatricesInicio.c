@@ -15,18 +15,18 @@ int main() {
 
     int C[3][3];
 
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            C[i][j] = 0;
+    for (int x = 0; x < 3; x++) {
+        for (int y = 0; y < 3; y++) {
+            C[x][y] = 0;
             for (int k = 0; k < 3; k++) {
-                C[i][j] += A[i][k] * B[k][j];
+                C[x][y] += A[x][k] * B[k][y];
             }
         }
     }
     
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            printf("%d\t ", C[i][j]);
+    for (int x = 0; x < 3; x++) {
+        for (int y = 0; y < 3; y++) {
+            printf("%d\t ", C[x][y]);
         }
         printf("\n");
     }
