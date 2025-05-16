@@ -1,13 +1,13 @@
 #include <stdio.h>
 
-typedef struct {
+struct Producto{
     char nombre[50];
     float precio;
     int cantidad;
-} Producto;
+} ;
 
 int main() {
-    Producto productos[3];
+    struct Producto productos[3];
     int i;
 
     for (i = 0; i < 3; i++) {
