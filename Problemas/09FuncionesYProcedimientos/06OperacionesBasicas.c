@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 int sumar(int a, int b) {
     return a + b;
 }
@@ -13,7 +14,7 @@ int multiplicar(int a, int b) {
 
 int operar(int a, int b){
     int operacion;
-     printf("Ingrese la operación a realizar: ");
+    printf("Ingrese la operación a realizar: ");
     scanf("%d", &operacion);
     if(operacion == 1){
         return sumar(a,b); 
@@ -26,7 +27,6 @@ int operar(int a, int b){
     }
     return 0;
 }
-
 
 int main() {
     int a, b;
