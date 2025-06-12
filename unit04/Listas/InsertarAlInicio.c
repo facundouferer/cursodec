@@ -28,7 +28,7 @@ void mostrarLista(struct Nodo *nodo)
 // Función principal del programa
 int main()
 {
-    struct Nodo *lista = NULL; // Creamos una lista vacía
+    struct Nodo *lista = NULL; // Creamos UN NODO!!!!
 
     // Insertamos nodos al inicio
     insertarAlInicio(&lista, 10); // Lista: 10
