@@ -8,7 +8,7 @@ int main() {
     char respuesta;
 
     // Abrir el archivo en modo escritura (append)
-    archivo = fopen("nombres.txt", "a");
+    archivo = fopen("../nombres.txt", "a");
 
     if (archivo == NULL) {
         printf("Error al abrir el archivo.\n");
@@ -31,7 +31,7 @@ int main() {
     fclose(archivo);
 
     // Abrir el archivo en modo lectura
-    archivo = fopen("nombres.txt", "r");
+    archivo = fopen("../nombres.txt", "r");
 
     if (archivo == NULL) {
         printf("Error al abrir el archivo para lectura.\n");

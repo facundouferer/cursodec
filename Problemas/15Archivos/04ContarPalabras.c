@@ -8,7 +8,7 @@ int main() {
     int total_words = 0;
 
     // Abre el archivo en modo lectura
-    file = fopen("texto.txt", "r");
+    file = fopen("../texto.txt", "r");
 
     // Verifica si el archivo se abrió correctamente
     if (file == NULL) {

@@ -9,7 +9,7 @@ int main() {
     scanf("%d", &numero);
 
     // Escribir el número en el archivo
-    archivo = fopen("../numero.txt", "w");
+    archivo = fopen("numero.txt", "w");
     if (archivo == NULL) {
         printf("Error al abrir el archivo para escritura.\n");
         return 1;
