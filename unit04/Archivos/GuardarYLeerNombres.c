@@ -21,7 +21,7 @@ int main() {
     fclose(archivo);
 
     // Leer nombres
-    archivo = fopen("nombres.txt", "r");
+    archivo = fopen("../nombres.txt", "r");
     if (archivo == NULL) {
         printf("No se pudo abrir el archivo para leer.\n");
         return 1;

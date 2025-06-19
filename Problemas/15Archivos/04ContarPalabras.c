@@ -12,7 +12,7 @@ int main() {
 
     // Verifica si el archivo se abrió correctamente
     if (file == NULL) {
-        perror("Error al abrir el archivo");
+        perror("Error al abrir el archivox");
         return 1;
     }
 
