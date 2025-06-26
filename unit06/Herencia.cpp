@@ -9,9 +9,17 @@ public:
 };
 
 class Perro : public Animal {
+private:
+    string raza;
 public:
     void ladrar() {
         cout << "Guau guau!" << endl;
+    }
+    string getRaza() const {
+        return raza;
+    }
+    void setRaza(string r) {
+        raza = r;
     }
 };
 
