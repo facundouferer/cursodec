@@ -7,12 +7,11 @@ int main()
 
   printf("¿Cuántas veces se lanzó la moneda? ");
   scanf("%d", &tiro);
-  int contador = 1;
 
-  do
+  for (int i = 0; i < tiro; i++)
   {
     int resultado;
-    printf("Ingrese el resultado del lanzamiento (0 para cara, 1 para seca): ");
+    printf("0 para cara, 1 para seca: ");
     scanf("%d", &resultado);
 
     if (resultado == 0)
@@ -21,8 +20,7 @@ int main()
     {
       secas++;
     }
-    contador++;
-  } while (contador <= tiro);
+  }
 
   frecuenciaRelativaCaras = ((float)caras / tiro) * 100;
   frecuenciaRelativaSecas = ((float)secas / tiro) * 100;

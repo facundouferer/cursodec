@@ -2,15 +2,15 @@
 
 int main()
 {
+  int tabla;
+  printf("Ingrese la tabla a multiplicar: ");
+  scanf("%d", &tabla);
 
-  for (int i = 1; i <= 9; i++)
+  for (int j = 1; j <= 9; j++)
   {
-    printf("Tabla de multiplicar del %d:\n", i);
-    for (int j = 1; j <= 9; j++)
-    {
-      int total = i * j;
-      printf("%d x %d = %d\n", i, j, total);
-    }
+    int total = tabla * j;
+    printf("%d x %d = %d\n", tabla, j, total);
   }
+
   return 0;
 }
