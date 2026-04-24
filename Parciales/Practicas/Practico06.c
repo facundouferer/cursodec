@@ -130,3 +130,124 @@ int main()
 
   return 0;
 }
+
+/**
+ * Desarrollá un programa en C que simule el funcionamiento de un cajero automático simple.
+
+El programa debe comenzar con los siguientes datos cargados:
+
+* Un saldo inicial de la cuenta (tipo `float`)
+* Un PIN de acceso de 4 dígitos (tipo `int`)
+* Una variable para contar intentos fallidos
+* Una variable para la opción elegida en el menú
+
+## Primera parte: Validación de acceso
+
+1. El programa debe pedir al usuario que ingrese el PIN.
+2. Tendrá un máximo de **3 intentos** para acertarlo.
+3. Mientras el PIN sea incorrecto y queden intentos disponibles, debe seguir pidiéndolo usando `while`.
+4. Si falla los 3 intentos, mostrar:
+
+```text
+Tarjeta bloqueada
+```
+
+y finalizar el programa.
+
+5. Si el PIN es correcto, mostrar:
+
+```text
+Acceso concedido
+```
+
+---
+
+## Segunda parte: Menú principal
+
+Una vez dentro del sistema, mostrar repetidamente el siguiente menú hasta que el usuario elija salir:
+
+```text
+1 - Consultar saldo
+2 - Depositar dinero
+3 - Extraer dinero
+4 - Cambiar PIN
+5 - Salir
+```
+
+La opción debe resolverse con `switch`.
+
+---
+
+## Reglas de cada opción
+
+### Opción 1: Consultar saldo
+
+Mostrar el saldo actual.
+
+---
+
+### Opción 2: Depositar dinero
+
+Pedir un monto a depositar.
+
+* Si el monto es mayor a 0, sumarlo al saldo.
+* Si no, mostrar:
+
+```text
+Monto inválido
+```
+
+---
+
+### Opción 3: Extraer dinero
+
+Pedir monto a extraer.
+
+* Si el monto es mayor a 0:
+
+  * Si el monto es menor o igual al saldo, descontarlo.
+  * Si no alcanza el saldo, mostrar:
+
+```text
+Fondos insuficientes
+```
+
+(Este punto debe resolverse con **if anidado**).
+
+* Si el monto es menor o igual a 0, informar error.
+
+---
+
+### Opción 4: Cambiar PIN
+
+Pedir PIN actual.
+
+* Si coincide:
+
+  * Pedir nuevo PIN.
+  * Si el nuevo PIN tiene exactamente 4 cifras (entre 1000 y 9999), actualizarlo.
+  * Si no, informar error.
+* Si no coincide, mostrar:
+
+```text
+PIN incorrecto
+```
+
+---
+
+### Opción 5: Salir
+
+Mostrar:
+
+```text
+Gracias por utilizar el cajero
+```
+
+y terminar.
+
+## Validaciones generales
+
+* Si el usuario ingresa una opción inválida del menú, informar error.
+* Usar variables de tipo `int`, `float` y `char` si lo considerás necesario.
+* No usar arreglos, cadenas, funciones avanzadas ni estructuras.
+ */
