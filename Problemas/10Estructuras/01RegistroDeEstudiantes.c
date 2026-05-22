@@ -1,14 +1,15 @@
 #include <stdio.h>
 
 #define TAM_NOMBRE 50
-
-struct Estudiante{
+struct Estudiante
+{
     char nombre[TAM_NOMBRE];
     int edad;
     float promedio;
-} ;
+};
 
-int main() {
+int main()
+{
     struct Estudiante estudiante;
 
     printf("Ingrese el nombre del estudiante: ");
