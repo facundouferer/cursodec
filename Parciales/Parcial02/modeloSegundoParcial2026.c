@@ -1,11 +1,5 @@
 
-
 #include <stdio.h>
-
-/**
- * 1) La estructura de datos
- * sera dada por un struct en un array.
- */
 
 struct Persona
 {
@@ -16,11 +10,6 @@ struct Persona
 
 int main()
 {
-  /**
-   * 2) Inicializamos todo.
-   */
-
-  /* Array de ejemplo desordenado por DNI */
   struct Persona alumnos[] = {
       {40234567, "Ana", "Gomez"},
       {30123456, "Luis", "Perez"},
@@ -33,11 +22,6 @@ int main()
       {32000000, "Valentina", "Rodriguez"}};
 
   int cantidad = sizeof(alumnos) / sizeof(alumnos[0]);
-
-  /**
-   * 3) deben ORDENAR información usando el algoritmo
-   * de ordenamiento por el Método de la Burbuja.
-   */
 
   int i, j;
   struct Persona aux;
@@ -55,11 +39,6 @@ int main()
       }
     }
   }
-
-  /**
-   * 4) deben realizar una búsqueda usando el
-   * método de búsqueda binaria.
-   */
 
   int dniBUscado = 20111222; // DNI a buscar
 
@@ -92,10 +71,6 @@ int main()
     printf("Alumno con DNI %d no encontrado.\n", dniBUscado);
   }
 
-  /**
-   * 5) deben mostrar la información ordenada.
-   * o permitir al usuario buscar algo.
-   */
   printf("\nAlumnos ordenados por DNI:\n");
   for (i = 0; i < cantidad; i++)
   {
