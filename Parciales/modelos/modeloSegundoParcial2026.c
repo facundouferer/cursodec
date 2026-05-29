@@ -79,3 +79,24 @@ int main()
 
   return 0;
 }
+
+void ordenarAlumnosNombreyApellido(struct Persona alumnos[], int cantidad)
+{
+  int i, j;
+  struct Persona aux;
+
+  for (i = 0; i < cantidad - 1; i++)
+  {
+    for (j = 0; j < cantidad - i - 1; j++)
+    {
+      if (alumnos[j].apellido[0] > alumnos[j + 1].apellido[0] ||
+          (alumnos[j].apellido[0] == alumnos[j + 1].apellido[0] && alumnos[j].nombre[0] > alumnos[j + 1].nombre[0]))
+      {
+        // Intercambiar
+        aux = alumnos[j];
+        alumnos[j] = alumnos[j + 1];
+        alumnos[j + 1] = aux;
+      }
+    }
+  }
+}
