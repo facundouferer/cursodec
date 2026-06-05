@@ -10,9 +10,9 @@ struct Nodo
 void insertarAlInicio(struct Nodo **cabeza, int valor)
 {
     struct Nodo *nuevoNodo = (struct Nodo *)malloc(sizeof(struct Nodo)); // Reservamos memoria
-    nuevoNodo->dato = valor; // Asignamos el valor al nodo
-    nuevoNodo->siguiente = *cabeza; // El nuevo nodo apunta al nodo actual de la cabeza
-    *cabeza = nuevoNodo; // La cabeza de la lista ahora es el nuevo nodo
+    nuevoNodo->dato = valor;                                             // Asignamos el valor al nodo
+    nuevoNodo->siguiente = *cabeza;                                      // El nuevo nodo apunta al nodo actual de la cabeza
+    *cabeza = nuevoNodo;                                                 // La cabeza de la lista ahora es el nuevo nodo
 }
 
 void mostrarLista(struct Nodo *nodo)
@@ -33,6 +33,8 @@ int main()
     // Insertamos nodos al inicio
     insertarAlInicio(&lista, 10); // Lista: 10
     insertarAlInicio(&lista, 20); // Lista: 20 -> 10
+    insertarAlInicio(&lista, 30); // Lista: 30 -> 20 -> 10
+    insertarAlInicio(&lista, 40); // Lista: 40 -> 30 -> 20 -> 10
 
     printf("Lista actual:\n");
     mostrarLista(lista); // Muestra la lista completa
