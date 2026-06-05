@@ -15,7 +15,7 @@ void insertarAlFinal(struct Pelicula **cabeza, const char *nombre, int anio);
 void mostrarLista(struct Pelicula *nodo);
 void eliminarNodo(struct Pelicula **cabeza, const char *nombre);
 void buscarNodo(struct Pelicula **cabeza, const char *nombre);
-void modificarNodo(struct Pelicula **cabeza, const char *nombre);
+void modificarNodo(struct Pelicula **cabeza, const char *nombre, const char *nuevoNombre, int nuevoAnio);
 
 int main()
 {
@@ -67,6 +67,7 @@ int main()
       scanf("%d", &anioFinal);
       getchar();
       insertarAlFinal(&lista, nombreNuevaFinal, anioFinal);
+      break;
 
     case 5:
       printf("Ingrese el nombre de la película a buscar: ");
@@ -81,7 +82,17 @@ int main()
       char nombreModificar[100];
       fgets(nombreModificar, sizeof(nombreModificar), stdin);
       nombreModificar[strcspn(nombreModificar, "\n")] = '\0';
-      modificarNodo(&lista, nombreModificar);
+
+      printf("Ingrese el nuevo nombre de la película: ");
+      char nuevoNombre[100];
+      fgets(nuevoNombre, sizeof(nuevoNombre), stdin);
+      nuevoNombre[strcspn(nuevoNombre, "\n")] = '\0';
+
+      printf("Ingrese el nuevo año de la película: ");
+      int nuevoAnio;
+      scanf("%d", &nuevoAnio);
+      getchar();
+      modificarNodo(&lista, nombreModificar, nuevoNombre, nuevoAnio);
       break;
 
     case 0:
@@ -139,19 +150,13 @@ void mostrarLista(struct Pelicula *nodo)
 void buscarNodo(struct Pelicula **cabeza, const char *nombre)
 {
   struct Pelicula *temp = *cabeza;
-  int encontrado = 0;
 
-  while (temp != NULL && strcmp(temp->nombre, nombre) != 0) // strcmp devuelve 0 si las cadenas son iguales
+  while (temp != NULL && strcmp(temp->nombre, nombre) != 0)
   {
-    if (strcmp(temp->nombre, nombre) == 0)
-    {
-      encontrado = 1;
-      break;
-    }
-    temp = temp->siguiente; // Avanzar al siguiente nodo
+    temp = temp->siguiente;
   }
 
-  if (encontrado)
+  if (temp != NULL)
   {
     printf("Pelicula encontrada: %s (%d)\n", temp->nombre, temp->anio);
   }
@@ -161,7 +166,7 @@ void buscarNodo(struct Pelicula **cabeza, const char *nombre)
   }
 }
 
-void modificarNodo(struct Pelicula **cabeza, const char *nombre)
+void modificarNodo(struct Pelicula **cabeza, const char *nombre, const char *nuevoNombre, int nuevoAnio)
 {
   struct Pelicula *temp = *cabeza;
 
@@ -173,18 +178,10 @@ void modificarNodo(struct Pelicula **cabeza, const char *nombre)
   if (temp == NULL)
     return; // No se encontró la película
 
-  printf("Ingrese el nuevo nombre de la película: ");
-  char nuevoNombre[100];
-  fgets(nuevoNombre, sizeof(nuevoNombre), stdin);
-  nuevoNombre[strcspn(nuevoNombre, "\n")] = '\0'; // Eliminar el salto de línea
-
-  printf("Ingrese el nuevo año de la película: ");
-  int nuevoAnio;
-  scanf("%d", &nuevoAnio);
-  getchar(); // Limpiar el buffer de entrada
-
   strcpy(temp->nombre, nuevoNombre);
   temp->anio = nuevoAnio;
+
+  printf("Pelicula modificada: %s (%d)\n", temp->nombre, temp->anio);
 }
 
 void eliminarNodo(struct Pelicula **cabeza, const char *nombre)
