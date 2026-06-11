@@ -161,6 +161,111 @@ void ordenarPiezas(struct Pieza piezas[], int cantidad)
   }
 }
 
+// buscar piezas con el metodo de Busqueda Binaria (Binary Search)
+struct Pieza buscarPieza(struct Pieza piezas[], int cantidad, int fila, int columna)
+{
+  ordenarPiezas(piezas, cantidad);
+
+  int inicio = 0;
+  int fin = cantidad - 1;
+
+  while (inicio <= fin)
+  {
+    int medio = inicio + (fin - inicio) / 2;
+    int filaMedio = piezas[medio].posicion[0];
+    int columnaMedio = piezas[medio].posicion[1];
+
+    if (filaMedio == fila && columnaMedio == columna)
+    {
+      return piezas[medio];
+    }
+    else if (filaMedio < fila || (filaMedio == fila && columnaMedio < columna))
+    {
+      inicio = medio + 1;
+    }
+    else
+    {
+      fin = medio - 1;
+    }
+  }
+
+  struct Pieza piezaNoEncontrada = {{-1, -1}, "", 'x', 0, 0};
+  return piezaNoEncontrada;
+}
+
+// listar las piezas de mayor valor
+void listarPiezasPorValor(struct Pieza piezas[], int cantidad)
+{
+  struct Pieza aux;
+  for (int i = 0; i < cantidad - 1; i++)
+  {
+    for (int j = 0; j < cantidad - i - 1; j++)
+    {
+      if (piezas[j].valor < piezas[j + 1].valor)
+      {
+        aux = piezas[j];
+        piezas[j] = piezas[j + 1];
+        piezas[j + 1] = aux;
+      }
+    }
+  }
+
+  printf("Piezas ordenadas por valor (de mayor a menor):\n");
+  for (int i = 0; i < cantidad; i++)
+  {
+    printf("Posicion: (%d,%d), Tipo: %s, Color: %c, Valor: %d\n",
+           piezas[i].posicion[0], piezas[i].posicion[1], piezas[i].tipo, piezas[i].color, piezas[i].valor);
+  }
+}
+
+// listar las piezas ordenadas por posicion
+void listarPiezasPorPosicion(struct Pieza piezas[], int cantidad)
+{
+  ordenarPiezas(piezas, cantidad);
+
+  printf("Piezas ordenadas por posicion:\n");
+  for (int i = 0; i < cantidad; i++)
+  {
+    printf("Posicion: (%d,%d), Tipo: %s, Color: %c, Valor: %d\n",
+           piezas[i].posicion[0], piezas[i].posicion[1], piezas[i].tipo, piezas[i].color, piezas[i].valor);
+  }
+}
+
+// listar solo las piezas activas
+void listarPiezasActivas(struct Pieza piezas[], int cantidad)
+{
+  printf("Piezas activas en el tablero:\n");
+  int encontradas = 0;
+  for (int i = 0; i < cantidad; i++)
+  {
+    if (piezas[i].activa == 1)
+    {
+      printf("Posicion: (%d,%d), Tipo: %s, Color: %c, Valor: %d\n",
+             piezas[i].posicion[0], piezas[i].posicion[1], piezas[i].tipo, piezas[i].color, piezas[i].valor);
+      encontradas++;
+    }
+  }
+  if (encontradas == 0)
+  {
+    printf("No hay piezas activas.\n");
+  }
+}
+
+// capturar una pieza por posicion
+void capturarPieza(struct Pieza piezas[], int cantidad, int fila, int columna)
+{
+  for (int i = 0; i < cantidad; i++)
+  {
+    if (piezas[i].posicion[0] == fila && piezas[i].posicion[1] == columna)
+    {
+      piezas[i].activa = 0;
+      printf("Pieza en posicion (%d,%d) capturada.\n", fila, columna);
+      return;
+    }
+  }
+  printf("Pieza en posicion (%d,%d) no encontrada.\n", fila, columna);
+}
+
 // restaurar una pieza por posicion
 void restaurarPieza(struct Pieza piezas[], int cantidad, int fila, int columna)
 {
@@ -170,6 +275,37 @@ void restaurarPieza(struct Pieza piezas[], int cantidad, int fila, int columna)
     {
       piezas[i].activa = 1;
       printf("Pieza en posicion (%d,%d) restaurada.\n", fila, columna);
+      return;
+    }
+  }
+  printf("Pieza en posicion (%d,%d) no encontrada.\n", fila, columna);
+}
+
+// modificar tipo, color o valor de una pieza por posicion
+void modificarPieza(struct Pieza piezas[], int cantidad, int fila, int columna)
+{
+  for (int i = 0; i < cantidad; i++)
+  {
+    if (piezas[i].posicion[0] == fila && piezas[i].posicion[1] == columna)
+    {
+      printf("Pieza encontrada: %s de color %c\n", piezas[i].tipo, piezas[i].color);
+
+      int numeroPieza;
+      printf("Seleccione el nuevo tipo de pieza:\n");
+      printf("1. Peon\n");
+      printf("2. Torre\n");
+      printf("3. Caballo\n");
+      printf("4. Alfil\n");
+      printf("5. Reina\n");
+      printf("6. Rey\n");
+      printf("Ingrese una opcion: ");
+      scanf("%d", &numeroPieza);
+
+      strcpy(piezas[i].tipo, seleccionarTipoDePieza(numeroPieza));
+      printf("Nuevo color ('b' blanco, 'n' negro): ");
+      scanf(" %c", &piezas[i].color);
+      piezas[i].valor = obtenerValorDePieza(numeroPieza);
+      printf("Pieza modificada.\n");
       return;
     }
   }

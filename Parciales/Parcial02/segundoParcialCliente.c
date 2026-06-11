@@ -148,6 +148,142 @@ void ordenarClientes(struct Cliente clientes[], int cantidad)
   }
 }
 
+// buscar clientes con el metodo de Busqueda Binaria (Binary Search)
+struct Cliente buscarCliente(struct Cliente clientes[], int cantidad, int dni)
+{
+  ordenarClientes(clientes, cantidad);
+
+  int inicio = 0;
+  int fin = cantidad - 1;
+
+  while (inicio <= fin)
+  {
+    int medio = inicio + (fin - inicio) / 2;
+
+    if (clientes[medio].dni == dni)
+    {
+      return clientes[medio];
+    }
+    else if (clientes[medio].dni < dni)
+    {
+      inicio = medio + 1;
+    }
+    else
+    {
+      fin = medio - 1;
+    }
+  }
+
+  struct Cliente clienteNoEncontrado = {-1, "", "", 0.0, 0};
+  return clienteNoEncontrado;
+}
+
+// listar los clientes de mayor saldo
+void listarClientesPorSaldo(struct Cliente clientes[], int cantidad)
+{
+  struct Cliente aux;
+  for (int i = 0; i < cantidad - 1; i++)
+  {
+    for (int j = 0; j < cantidad - i - 1; j++)
+    {
+      if (clientes[j].saldo < clientes[j + 1].saldo)
+      {
+        aux = clientes[j];
+        clientes[j] = clientes[j + 1];
+        clientes[j + 1] = aux;
+      }
+    }
+  }
+
+  printf("Clientes ordenados por saldo (de mayor a menor):\n");
+  for (int i = 0; i < cantidad; i++)
+  {
+    printf("DNI: %d, Nombre: %s %s, Saldo: %.2f\n", clientes[i].dni, clientes[i].nombre, clientes[i].apellido, clientes[i].saldo);
+  }
+}
+
+// listar los clientes ordenados por DNI
+void listarClientesPorDNI(struct Cliente clientes[], int cantidad)
+{
+  ordenarClientes(clientes, cantidad);
+
+  printf("Clientes ordenados por DNI:\n");
+  for (int i = 0; i < cantidad; i++)
+  {
+    printf("DNI: %d, Nombre: %s %s, Saldo: %.2f\n", clientes[i].dni, clientes[i].nombre, clientes[i].apellido, clientes[i].saldo);
+  }
+}
+
+// listar solo los clientes habilitados
+void listarClientesHabilitados(struct Cliente clientes[], int cantidad)
+{
+  printf("Clientes habilitados:\n");
+  int encontrados = 0;
+  for (int i = 0; i < cantidad; i++)
+  {
+    if (clientes[i].habilitado == 1)
+    {
+      printf("DNI: %d, Nombre: %s %s, Saldo: %.2f\n", clientes[i].dni, clientes[i].nombre, clientes[i].apellido, clientes[i].saldo);
+      encontrados++;
+    }
+  }
+  if (encontrados == 0)
+  {
+    printf("No hay clientes habilitados.\n");
+  }
+}
+
+// deshabilitar un cliente por DNI
+void deshabilitarCliente(struct Cliente clientes[], int cantidad, int dni)
+{
+  for (int i = 0; i < cantidad; i++)
+  {
+    if (clientes[i].dni == dni)
+    {
+      clientes[i].habilitado = 0;
+      printf("Cliente con DNI %d deshabilitado.\n", dni);
+      return;
+    }
+  }
+  printf("Cliente con DNI %d no encontrado.\n", dni);
+}
+
+// habilitar un cliente por DNI
+void habilitarCliente(struct Cliente clientes[], int cantidad, int dni)
+{
+  for (int i = 0; i < cantidad; i++)
+  {
+    if (clientes[i].dni == dni)
+    {
+      clientes[i].habilitado = 1;
+      printf("Cliente con DNI %d habilitado.\n", dni);
+      return;
+    }
+  }
+  printf("Cliente con DNI %d no encontrado.\n", dni);
+}
+
+// modificar nombre, apellido o saldo de un cliente por DNI
+void modificarCliente(struct Cliente clientes[], int cantidad, int dni)
+{
+  for (int i = 0; i < cantidad; i++)
+  {
+    if (clientes[i].dni == dni)
+    {
+      printf("Cliente encontrado: %s %s\n", clientes[i].nombre, clientes[i].apellido);
+      printf("Nuevo nombre: ");
+      scanf("%s", clientes[i].nombre);
+      printf("Nuevo apellido: ");
+      scanf("%s", clientes[i].apellido);
+      printf("Nuevo saldo: ");
+      scanf("%f", &clientes[i].saldo);
+      printf("Cliente modificado.\n");
+      return;
+    }
+  }
+  printf("Cliente con DNI %d no encontrado.\n", dni);
+}
+
 // mostrar cantidad de habilitados y inhabilitados
 void mostrarEstadisticas(struct Cliente clientes[], int cantidad)
 {
